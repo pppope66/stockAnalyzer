@@ -1,0 +1,7 @@
+usage run the below scripts in order:
+month.py, mont2.py, month3.py
+They all generate some csv file.
+
+To see csv file nicely run beautify.py
+
+To plot csv file as candlelight chart use bar.py

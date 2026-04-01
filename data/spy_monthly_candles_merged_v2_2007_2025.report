@@ -1,0 +1,53 @@
+=== SPY Market Trend Analysis Report ===
+Generated: 2025-03-11 01:01:45
+Data source: spy_monthly_candles_merged_v2_2007_2025.csv
+Analysis period: 2007-01-01 to 2025-03-01
+
+=== Basic Statistics ===
+Total trends identified: 40
+Upward trends (green): 20
+Downward trends (red): 20
+Total months analyzed: 219
+Months in uptrends: 162 (74.0%)
+Months in downtrends: 57 (26.0%)
+
+=== Duration Statistics ===
+Average trend duration: 5.5 months
+Median trend duration: 3.0 months
+Average uptrend duration: 8.1 months
+Median uptrend duration: 5.5 months
+Average downtrend duration: 2.9 months
+Median downtrend duration: 2.0 months
+Longest uptrend: 38 months
+Longest downtrend: 9 months
+
+=== Performance Statistics ===
+Average percentage change (all trends): 6.21%
+Average percentage change (uptrends): +26.84%
+Average percentage change (downtrends): -14.42%
+Maximum uptrend gain: +76.01%
+Maximum downtrend loss: -46.26%
+Average monthly return: 30.50%
+
+=== Trend Length Distribution ===
+1-3 months: 24 trends (60.0%)
+4-6 months: 6 trends (15.0%)
+7-12 months: 5 trends (12.5%)
+13-24 months: 4 trends (10.0%)
+25-+ months: 1 trends (2.5%)
+
+=== Additional Insights ===
+Trend change frequency: 0.18 changes per month
+Correlation between trend length and percentage change: 0.70
+Positive correlation suggests longer trends tend to have larger percentage moves
+
+=== Notable Trends ===
+Top 3 Uptrends by Percentage Gain:
+  2012-06-01: +76.01% over 38 months
+  2009-03-01: +73.01% over 14 months
+  2016-02-01: +55.03% over 24 months
+
+Top 3 Downtrends by Percentage Loss:
+  2008-06-01: -46.26% over 9 months
+  2020-01-01: -32.54% over 3 months
+  2022-04-01: -20.11% over 3 months
