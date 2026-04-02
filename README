@@ -1,7 +1,44 @@
 usage run the below scripts in order:
-month.py, mont2.py, month3.py
+month.py, month2.py, month3.py
 They all generate some csv file.
 
 To see csv file nicely run beautify.py
 
 To plot csv file as candlelight chart use bar.py
+
+To genreate report for a ticker use report.py
+
+
+==================Example Run for analyzing SPY history from 2007 to 2026 ==================
+  Step 1 — Fetch data (required)
+
+  python3 month.py -t SPY -s 2007-01-01 -e 2026-01-01 -i monthly
+  # Output: spy_monthly_candles_2007_2026.csv
+
+  Step 2 — Merge same-color candles (required)
+
+  python3 month2.py -i spy_monthly_candles_2007_2026.csv
+  # Output: spy_monthly_candles_2007_2026_merged.csv
+
+  Step 3 — Merge by threshold (optional)
+  Absorbs small counter-trend candles into the dominant trend. Tune the % threshold to your taste (e.g. 6 means ignore reversals under 6%).
+
+  python3 month3.py -i spy_monthly_candles_2007_2026_merged.csv -t 6
+  # Output: spy_monthly_candles_2007_2026_merged_merged_v2.csv
+
+  ---
+  Visualization / Output — pick any or all (all optional)
+
+  Interactive chart (recommended):
+  python3 bar.py spy_monthly_candles_2007_2026_merged_merged_v2.csv
+  # or with v2:
+  python script/bar.py spy_monthly_candles_2007_2026_merged_merged_v2.csv
+  # Output: opens an HTML chart in browser
+
+  Statistical report:
+  python3 report.py spy_monthly_candles_2007_2026_merged_merged_v2.csv
+  # Output: spy_monthly_candles_2007_2026_merged.report
+
+  Human-readable text table:
+  python3 beautify.py spy_monthly_candles_2007_2026_merged_merged_v2.csv spy_trends.txt
+  # Output: spy_trends.txt
