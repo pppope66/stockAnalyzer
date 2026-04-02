@@ -1,0 +1,4 @@
+1. The merge logic now has a problem that the first couple of trend is very small, nothing to merge to. We should consider if it is worth to merge them or not, like find the first large one and then merge backwards.
+2. We can integrate with AI to find Primary causes for each trend. For serious trend use deep research i.e. more token, small trend just direct AI call.
+3. Make the charting more human-readable. 
+4. Deploy this to a website so that people can use it to analyze any ticker for any period of their preference. 
