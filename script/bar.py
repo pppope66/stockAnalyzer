@@ -23,15 +23,18 @@ def create_candlestick_chart(csv_filename):
         print(f"Reading data from: {csv_filename}")
         df = pd.read_csv(csv_filename)
         
+        # Support both old (Month_Count) and new (IntervalCount) column names
+        count_column = 'Month_Count' if 'Month_Count' in df.columns else 'IntervalCount'
+
         # Ensure required columns exist
-        required_columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Color', 'Percent_Change', 'Month_Count']
+        required_columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Color', 'Percent_Change', count_column]
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
             print(f"Error: Missing required columns: {', '.join(missing_columns)}")
             return
-            
+
         # Convert numeric columns
-        numeric_columns = ['Open', 'High', 'Low', 'Close', 'Percent_Change', 'Month_Count']
+        numeric_columns = ['Open', 'High', 'Low', 'Close', 'Percent_Change', count_column]
         for col in numeric_columns:
             df[col] = pd.to_numeric(df[col])
             
@@ -62,7 +65,7 @@ def create_candlestick_chart(csv_filename):
                 f"High: {row['High']:.2f}<br>" +
                 f"Low: {row['Low']:.2f}<br>" +
                 f"Close: {row['Close']:.2f}<br>" +
-                f"Months: {int(row['Month_Count'])}<br>" +
+                f"Months: {int(row[count_column])}<br>" +
                 f"Change: {row['Percent_Change']:+.2f}%"
                 for _, row in df.iterrows()
             ],
@@ -114,7 +117,7 @@ def create_candlestick_chart(csv_filename):
             month_count_annotations.append(dict(
                 x=row['Position'],
                 y=text_y,
-                text=f"{int(row['Month_Count'])}m ({row['Percent_Change']:+.2f}%)",
+                text=f"{int(row[count_column])}m ({row['Percent_Change']:+.2f}%)",
                 showarrow=True,
                 arrowhead=2,
                 arrowsize=0.8,

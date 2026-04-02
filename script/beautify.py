@@ -21,8 +21,11 @@ def beautify_output(input_file, output_file):
         df = pd.read_csv(input_file)
         print(f"Read {len(df)} rows from input file")
         
+        # Support both old (Month_Count) and new (IntervalCount) column names
+        count_column = 'Month_Count' if 'Month_Count' in df.columns else 'IntervalCount'
+
         # Convert numeric columns to float for proper formatting
-        numeric_columns = ['Open', 'High', 'Low', 'Close', 'Percent_Change', 'Month_Count']
+        numeric_columns = ['Open', 'High', 'Low', 'Close', 'Percent_Change', count_column]
         for col in numeric_columns:
             df[col] = pd.to_numeric(df[col])
         
@@ -49,7 +52,7 @@ def beautify_output(input_file, output_file):
                     f"{row['Close']:,.2f}\t"
                     f"{row['Color']:<5}\t"
                     f"{row['Percent_Change']:+.2f}%\t"
-                    f"{int(row['Month_Count'])}"
+                    f"{int(row[count_column])}"
                 )
                 f.write(formatted_row + '\n')
             
@@ -63,10 +66,10 @@ def beautify_output(input_file, output_file):
             
             f.write(f"Green Trends: {len(green_trends)}\n")
             f.write(f"Red Trends: {len(red_trends)}\n")
-            f.write(f"Average Green Trend Duration: {green_trends['Month_Count'].mean():.1f} months\n")
-            f.write(f"Average Red Trend Duration: {red_trends['Month_Count'].mean():.1f} months\n")
-            f.write(f"Longest Green Trend: {int(green_trends['Month_Count'].max())} months\n")
-            f.write(f"Longest Red Trend: {int(red_trends['Month_Count'].max())} months\n")
+            f.write(f"Average Green Trend Duration: {green_trends[count_column].mean():.1f} months\n")
+            f.write(f"Average Red Trend Duration: {red_trends[count_column].mean():.1f} months\n")
+            f.write(f"Longest Green Trend: {int(green_trends[count_column].max())} months\n")
+            f.write(f"Longest Red Trend: {int(red_trends[count_column].max())} months\n")
             
         print(f"Beautified output saved to {output_file}")
         
